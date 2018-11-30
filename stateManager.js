@@ -23,6 +23,7 @@ sendMajorId = () => {
             localStorage.setItem("queryResults", JSON.stringify(data));
             if (parseInt(localStorage.getItem("change"))==0){
                 window.location = "webpages/main-page.html";
+                localStorage["change"] = "1";
             }
             else {
                 window.location = "main-page.html";
