@@ -26,25 +26,19 @@
         event.preventDefault();
     };
 
-    function makeDragImageTransparent(event) {
+    function drag(event) {
         var blankImage = new Image();
         blankImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
         event.dataTransfer.setDragImage(blankImage, 0, 0);
-    };
 
-    function getCourseName(event, courseTitle) {
+        var courseTitle = event.target.querySelector('.course-title');
+        
         if (courseTitle != null)
             var courseName = courseTitle.innerText.split(':')[0];
         else
             var courseName = event.target.innerText;
 
         return courseName;
-    };
-
-    function drag(event) {
-        makeDragImageTransparent(event);
-        var courseTitle = event.target.querySelector('.course-title');
-        var course_name = getCourseName(event, courseTitle);
 
         getDroppedCourseTitle(course_name);
         event.dataTransfer.setData("course-name", course_name);
@@ -68,10 +62,6 @@
 
     function autoPopulateSchedule(event) {
         let majorSchedule = getSchedule();
-<<<<<<< HEAD
-=======
-
->>>>>>> 41f255172cf5fcd14416b6292167f3965ed63da9
         for (var i=0;i<majorSchedule.length;i++) {
             if (majorSchedule[i]!=null) {
                 let id = i.toString();            
