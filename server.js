@@ -94,6 +94,23 @@ app.post('/createPlan', (req, res) => {
     });
 });
 
+app.post('/getPrereqs', (req, res) => {
+    console.log(req.body)
+    let majorId = parseInt(req.body.mid);
+    let courseId = parseInt(req.body.cid);
+    let prereqQuery = 'select courseId, prereqCourseId, courseAbbreviation from `Prerequisite` INNER JOIN `Course` on `prerequisite`.prereqCourseId=`course`.id where `Course`.id in (select courseId from `CourseInMajor` where majorId='+majorId+') and courseId=' +courseId+';';
+    connection.query(prereqQuery, (err, results) => {
+        if (err) {
+	    	console.log("Error ocurred.", err);
+  	    	res.send({err});
+        }
+        else {
+            console.log(results)
+            res.send(results);
+        }
+    });
+});
+
 // Gets a list view for a major [0], minor [1], or dept [1]
 app.get('/getList', (req, res) => {
     let listObject = listTypes[req.body.index];

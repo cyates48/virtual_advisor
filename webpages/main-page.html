@@ -55,19 +55,16 @@
 
         var sourceid = event.dataTransfer.getData("sourceid");        
 
-        console.log(currentText);
         if (sourceid)
             document.getElementById(sourceid).querySelector('.course-name').innerText = currentText;
+;
     };
 
     function autoPopulateSchedule(event) {
         let majorSchedule = getSchedule();
-        console.log(majorSchedule);
-        console.log("populating schedule?...");
         for (var i=0;i<majorSchedule.length;i++) {
             if (majorSchedule[i]!=null) {
-                let id = i.toString();
-               
+                let id = i.toString();            
                 document.getElementById(id).querySelector(".course-name").innerHTML =  majorSchedule[i].courseAbbreviation;
             }
         }
@@ -83,6 +80,7 @@
     function removeCourse(event)
     {
         event.target.parentNode.querySelector('.course-name').innerText = '';
+        removeFromSchedule(event.target.parentNode.id);
     }
     function showDeleteButton(event)
     {
@@ -444,7 +442,7 @@
             <div class="courses-lists">
                 <div class="courses-list">
                     <select class="form-control" id="major-options" onchange="sendMajorId()">
-                        <option value='0'></option>
+                        <option value="0" onchange="sendMajorId()"></option>
                         <option value="1" onclick="sendMajorId()">Computer Science</option>
                         <option value="2" onclick="sendMajorId()">Mathematics</option>
                     </select>    
