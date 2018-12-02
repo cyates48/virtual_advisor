@@ -27,18 +27,18 @@
     };
 
     function drag(event) {
-        var blankImage = new Image();
-        blankImage.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
-        event.dataTransfer.setDragImage(blankImage, 0, 0);
+        var img = new Image();
+        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+        event.dataTransfer.setDragImage(img, 0, 0);
 
-        var courseTitle = event.target.querySelector('.course-title');
+       var course_title = event.target.querySelector('.course-title');
         
-        if (courseTitle != null)
-            var courseName = courseTitle.innerText.split(':')[0];
+        if (course_title != null) 
+            var course_name = course_title.innerText.split(':')[0];
         else
-            var courseName = event.target.innerText;
+            var course_name = event.target.innerText;
 
-        return courseName;
+        //return courseName;
 
         getDroppedCourseTitle(course_name);
         event.dataTransfer.setData("course-name", course_name);

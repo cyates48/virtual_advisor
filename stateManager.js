@@ -1,6 +1,5 @@
 let majorId = 0;
 let schedule = [];
-let scheduleLength = 48;
 let queryResults;
 let currentCourseTitle;
 let currentCourseObject;
@@ -47,7 +46,6 @@ sendMajorId = () => {
 setSchedule = (results) => {
     queryResults = results;
     majorId = parseInt(localStorage.getItem("major"));
-    console.log(majorId)
     let majorView = queryResults[2];
     for (var i=0;i<majorView.length;i++) {
         schedule[majorView[i].schedulePosition] = majorView[i];
@@ -69,7 +67,6 @@ getDroppedCourseId = (index) => {
 
 removeFromSchedule = (index) => {
     schedule.splice(index, 1, 0);
-    console.log(schedule);
 };
 
 changeMade = (index) => {
@@ -102,8 +99,6 @@ checkPrereq = (index) => {
     smPrereqs = JSON.parse(localStorage.getItem("smPrereqs"));
     isBefore = false;
     for (var i=0;i<index;i++) {
-        console.log(schedule);
-        console.log(schedule[i]);
         if (typeof(schedule[i])=='undefined' || (typeof(schedule[i])=='null') || (typeof(schedule[i])=='empty' )) 
             continue;
         else if (schedule[i].courseAbbreviation==smPrereqs[0].courseAbbreviation)
@@ -115,18 +110,12 @@ checkPrereq = (index) => {
 
 checkQuarter = (index) => {
     var currentAbr = currentCourseObject.quarterOffered;
-    console.log(typeof(currentAbr));
-    console.log(typeof(currentCourseObject.quarterOffered[2]))
-
     confirm = false;
     
     inside = false;
     for (var i=0; i<offered[0].length;i++){
-        console.log((parseInt(index)) == offered[0][i])
         if ((parseInt(index)) == offered[0][i]){
             inside = true;
-            console.log(inside)
-            console.log(currentAbr[2]==="1")
         }
     }
     if (inside && currentAbr[0]==="1")
@@ -136,8 +125,6 @@ checkQuarter = (index) => {
     for (var i=0; i<offered[0].length;i++){
         if ((parseInt(index)) == offered[1][i]){
             inside = true;
-            console.log(inside)
-            console.log(currentAbr[2]==="1")
         }
     } 
     if (inside && currentAbr[1]==="1")
@@ -147,8 +134,6 @@ checkQuarter = (index) => {
     for (var i=0; i<offered[0].length;i++){
         if ((parseInt(index)) == offered[2][i]) {
             inside = true;
-            console.log(inside)
-            console.log(currentAbr[2]==="1")
         }
     }
     if (inside && currentAbr[2]==="1")

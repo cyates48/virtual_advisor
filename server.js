@@ -105,7 +105,6 @@ app.post('/getPrereqs', (req, res) => {
   	    	res.send({err});
         }
         else {
-            console.log(results)
             res.send(results);
         }
     });
